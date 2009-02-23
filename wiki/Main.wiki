@@ -8,7 +8,7 @@ C'est un logiciel qui va m'aider à apprendre plusieurs choses:
  * La langue Arabe;
  * La système de gestion du code par Google;
 
-Quant à vous, vous pouvez profiter de ce logiciel et apprendre l'alphabet arabe :)
+Quant à vous, vous pouvez profiter de ce logiciel en apprenant l'alphabet arabe :)
 
 = Pour Installer =
 == Microsoft .Net ==
