@@ -2,8 +2,7 @@
 
 = Introduction =
 
-C'est une logiciel qui va m'aider à apprendre plusieurs choses:
-
+C'est un logiciel qui va m'aider à apprendre plusieurs choses:
 
  * La langue C#;
  * La langue Arabe;
