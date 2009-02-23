@@ -1,0 +1,27 @@
+#summary main project page for "arabic-keyboard-trainer"
+
+= Introduction =
+
+C'est une logiciel qui va m'aider à apprendre plusieurs choses:
+
+
+ * La langue C#;
+ * La langue Arabe;
+ * La système de gestion du code par Google;
+
+Quant à vous, vous pouvez profiter de ce logiciel et apprendre l'alphabet arabe :)
+
+= Pour Installer =
+== Microsoft .Net ==
+D'abord, mettez à jour votre .Net Framework: 
+[http://www.microsoft.com/downloads/details.aspx?FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7&DisplayLang=fr Microsoft .Net Framework]
+
+= Details =
+
+== Des Leçons ==
+La structure des leçons est très simple: d'abord, on s'entraine par les deux nouvelles lettres, qui sont mélangés entre eux. C'est la première partie. La deuxième partie - c'est la mélange avec les lettres de leçons précédents. 
+
+*Attention! Il ne faut pas confondre les doigts! Le nombre d'un doigt est écrit dans la boite "Finger:".*
+
+= Links =
+[http://www.languageguide.org/im/alpha/ar/ www.languageguide.org] La meilleure ressource d'apprendre les choses initiales.
