@@ -12,7 +12,7 @@ namespace Arabic_Keyboard_Tutor
     public partial class ArabicKeyboardLayoutTrainer : Form
     {
         private Dictionary<int, char> arabic = new Dictionary<int, char>();
-        private const int LETTERS_COUNT = 15;
+        private const int LETTERS_COUNT = 55;
         private int errorsCount = 0;
         
         public ArabicKeyboardLayoutTrainer()
