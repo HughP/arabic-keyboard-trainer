@@ -15,6 +15,10 @@ Quant à vous, vous pouvez profiter de ce logiciel en apprenant l'alphabet arabe
 D'abord, mettez à jour votre .Net Framework: 
 [http://www.microsoft.com/downloads/details.aspx?FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7&DisplayLang=fr Microsoft .Net Framework]
 
+Puis, Téléchargez la dernière version du logiciel.
+
+Juissez! :)
+
 = Details =
 
 == Des Leçons ==
