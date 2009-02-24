@@ -52,7 +52,7 @@
             // fromTextBox
             // 
             this.fromTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.fromTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.fromTextBox.Font = new System.Drawing.Font("Arabic Transparent", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.fromTextBox.Location = new System.Drawing.Point(12, 12);
             this.fromTextBox.Multiline = true;
             this.fromTextBox.Name = "fromTextBox";
@@ -100,6 +100,7 @@
             this.nextButton.Text = "Next ->";
             this.nextButton.UseVisualStyleBackColor = true;
             this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
+            this.nextButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyEntered);
             // 
             // fingerNumberLabel
             // 
