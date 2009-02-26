@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.lessonsComboBox = new System.Windows.Forms.ComboBox();
-            this.fromTextBox = new System.Windows.Forms.TextBox();
             this.errorsCountLabel = new System.Windows.Forms.Label();
             this.keyCodeLabel = new System.Windows.Forms.Label();
             this.ErrorsLabel = new System.Windows.Forms.Label();
             this.nextButton = new System.Windows.Forms.Button();
             this.fingerNumberLabel = new System.Windows.Forms.Label();
+            this.fromTextBox = new System.Windows.Forms.RichTextBox();
+            this.currentLetter = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lessonsComboBox
@@ -42,25 +43,13 @@
             this.lessonsComboBox.AllowDrop = true;
             this.lessonsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.lessonsComboBox.Location = new System.Drawing.Point(473, 9);
+            this.lessonsComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lessonsComboBox.Name = "lessonsComboBox";
             this.lessonsComboBox.Size = new System.Drawing.Size(197, 21);
             this.lessonsComboBox.TabIndex = 0;
             this.lessonsComboBox.SelectedIndexChanged += new System.EventHandler(this.lessonsComboBox_SelectedIndexChanged);
             this.lessonsComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.keyPressed);
             this.lessonsComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyEntered);
-            // 
-            // fromTextBox
-            // 
-            this.fromTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.fromTextBox.Font = new System.Drawing.Font("Arabic Transparent", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.fromTextBox.Location = new System.Drawing.Point(12, 12);
-            this.fromTextBox.Multiline = true;
-            this.fromTextBox.Name = "fromTextBox";
-            this.fromTextBox.ReadOnly = true;
-            this.fromTextBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.fromTextBox.Size = new System.Drawing.Size(454, 262);
-            this.fromTextBox.TabIndex = 1;
-            this.fromTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyEntered);
             // 
             // errorsCountLabel
             // 
@@ -93,9 +82,10 @@
             // 
             // nextButton
             // 
-            this.nextButton.Location = new System.Drawing.Point(595, 36);
+            this.nextButton.Location = new System.Drawing.Point(595, 35);
+            this.nextButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.nextButton.Name = "nextButton";
-            this.nextButton.Size = new System.Drawing.Size(75, 23);
+            this.nextButton.Size = new System.Drawing.Size(75, 22);
             this.nextButton.TabIndex = 5;
             this.nextButton.Text = "Next ->";
             this.nextButton.UseVisualStyleBackColor = true;
@@ -106,24 +96,48 @@
             // 
             this.fingerNumberLabel.AutoSize = true;
             this.fingerNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.fingerNumberLabel.Location = new System.Drawing.Point(577, 211);
+            this.fingerNumberLabel.Location = new System.Drawing.Point(577, 212);
             this.fingerNumberLabel.Name = "fingerNumberLabel";
             this.fingerNumberLabel.Size = new System.Drawing.Size(75, 24);
             this.fingerNumberLabel.TabIndex = 6;
             this.fingerNumberLabel.Text = "Finger: ";
             // 
+            // fromTextBox
+            // 
+            this.fromTextBox.Font = new System.Drawing.Font("Arabic Transparent", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.fromTextBox.Location = new System.Drawing.Point(12, 12);
+            this.fromTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.fromTextBox.Name = "fromTextBox";
+            this.fromTextBox.ReadOnly = true;
+            this.fromTextBox.Size = new System.Drawing.Size(454, 262);
+            this.fromTextBox.TabIndex = 7;
+            this.fromTextBox.Text = "";
+            this.fromTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyEntered);
+            this.fromTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.fromTextBox_MouseMove);
+            // 
+            // currentLetter
+            // 
+            this.currentLetter.AutoSize = true;
+            this.currentLetter.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.currentLetter.Location = new System.Drawing.Point(484, 89);
+            this.currentLetter.Name = "currentLetter";
+            this.currentLetter.Size = new System.Drawing.Size(0, 13);
+            this.currentLetter.TabIndex = 8;
+            // 
             // ArabicKeyboardLayoutTrainer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(682, 283);
+            this.ClientSize = new System.Drawing.Size(682, 282);
+            this.Controls.Add(this.currentLetter);
+            this.Controls.Add(this.fromTextBox);
             this.Controls.Add(this.fingerNumberLabel);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.ErrorsLabel);
             this.Controls.Add(this.keyCodeLabel);
             this.Controls.Add(this.errorsCountLabel);
-            this.Controls.Add(this.fromTextBox);
             this.Controls.Add(this.lessonsComboBox);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ArabicKeyboardLayoutTrainer";
             this.Text = "Arabic Keyboard Layout Trainer";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -135,12 +149,13 @@
         #endregion
 
         private System.Windows.Forms.ComboBox lessonsComboBox;
-        private System.Windows.Forms.TextBox fromTextBox;
         private System.Windows.Forms.Label errorsCountLabel;
         private System.Windows.Forms.Label keyCodeLabel;
         private System.Windows.Forms.Label ErrorsLabel;
         private System.Windows.Forms.Button nextButton;
         private System.Windows.Forms.Label fingerNumberLabel;
+        private System.Windows.Forms.RichTextBox fromTextBox;
+        private System.Windows.Forms.Label currentLetter;
     }
 }
 

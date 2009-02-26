@@ -15,18 +15,30 @@ namespace Arabic_Keyboard_Tutor
         private List<Letter> letters = new List<Letter>();
         private Dictionary<string, Letter> lettersMap = new Dictionary<string, Letter>();
         private Dictionary<int, Letter> keysMap = new Dictionary<int, Letter>();
-        private List<string> words = new List<string>();
+        private List<Word> words = new List<Word>();
         private const int LETTERS_COUNT = 155;
         private int errorsCount = 0;
         
         public ArabicKeyboardLayoutTrainer()
         {
+            showLetterCode("ˁ");
             InitializeComponent();
             initializeDictionaries();
+        }
+        private void showLetterCode(string letter)
+        {
+            string result = "";
+            byte[] bytes = Encoding.Unicode.GetBytes(letter);
+            for (int i = bytes.Length - 1; i >= 0;  i--)
+            {
+                result += String.Format(" {0:X}", bytes[i]);
+            }
+            MessageBox.Show(result);
         }
         private int[] fingers;
         private enum Stage : int {Letters, Reiteration, Words };
         private Stage currentStage = Stage.Letters;
+        private Dictionary<string, Word> dict = new Dictionary<string, Word>();
         private void initializeDictionaries()
         {
             letters.Add(new Letter("ب", 70, 4));
@@ -69,12 +81,24 @@ namespace Arabic_Keyboard_Tutor
                 keysMap.Add(letter.keyValue, letter);
             }
 
-            words = new List<string>();
-            words.Add("بنت");
-            words.Add("ليل");
-            words.Add("مرحبا");
-            words.Add("نهار");
-            words.Add("مساء");
+            words.Add(new Word("بنت", "une fille", "bint\u032A"));
+            words.Add(new Word("ليل", "une nuit", "lajla"));
+            words.Add(new Word("مرحبا", "salut!", "mar\u0127aba:"));
+            words.Add(new Word("نهار", "un jour", ""));
+            words.Add(new Word("مساء", "un soir", "misa\u0294"));
+            words.Add(new Word("غابة", "un forêt", "\u0236a:ba"));
+            words.Add(new Word("بحر", "une mer", "ba\u0127r"));
+            words.Add(new Word("صحراء", "un désert", "s\u02c1a\u0127ra:\u0294"));
+            /*
+            words.Add(new Word("", "", ""));
+            words.Add(new Word("", "", ""));
+            words.Add(new Word("", "", ""));
+            */
+
+            foreach (Word word in words)
+            {
+                dict.Add(word.word, word);
+            }
             
             /*
             chunkList[] = new string[] { "", "" };
@@ -112,6 +136,7 @@ namespace Arabic_Keyboard_Tutor
             }
             fingerNumberLabel.Text = "Finger: " + fingerNumber(fromTextBox.Text);
             enableDisableNextButton();
+            setFirstLetterColor();
         }
         private Random r = new Random();
         string lastChar = null;
@@ -145,7 +170,7 @@ namespace Arabic_Keyboard_Tutor
                      List<string> wordsList = new List<string>();
                      for (int i = 0; i < words.Count; i++)
                      {
-                         char[] wordLetters = words[i].ToCharArray();
+                         char[] wordLetters = words[i].word.ToCharArray();
                          Boolean isFine = true;
                          for (int j = 0; j < wordLetters.Length; j++)
                          {
@@ -157,7 +182,7 @@ namespace Arabic_Keyboard_Tutor
                          }
                          if (isFine)
                          {
-                             wordsList.Add(words[i]);
+                             wordsList.Add(words[i].word);
                          }
                      }
                      chunksList = wordsList;
@@ -225,6 +250,7 @@ namespace Arabic_Keyboard_Tutor
                         nextLesson();
                     }
                     fingerNumberLabel.Text = "Finger: " + fingerNumber(fromTextBox.Text);
+                    setFirstLetterColor();
                     return;
                 }
             }
@@ -242,6 +268,14 @@ namespace Arabic_Keyboard_Tutor
             }
         }
 
+        private void setFirstLetterColor()
+        {
+            //First letter should be colored
+            fromTextBox.SelectAll();
+            fromTextBox.SelectionColor = Color.Black;
+            fromTextBox.Select(0, 1);
+            fromTextBox.SelectionColor = Color.Blue;
+        }
         private int fingerNumber(string result)
         {
             char[] arr = result.ToCharArray();
@@ -294,6 +328,30 @@ namespace Arabic_Keyboard_Tutor
         private void keyPressed(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void fromTextBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point pt = new Point(e.X, e.Y);
+            int pos = fromTextBox.GetCharIndexFromPosition(pt);
+            char c = fromTextBox.Text.ToCharArray()[pos];
+            int start = fromTextBox.Text.LastIndexOf(" ", pos, pos);
+            if (start < 0) start = 0;
+            int end = fromTextBox.Text.IndexOf(" ", pos);
+            if (end < 0) end = fromTextBox.Text.Length;
+            string word = fromTextBox.Text.Substring(start, end - start);
+            word = word.Trim();
+            if (word != "")
+            {
+                if (dict.Keys.Contains(word))
+                {
+                    currentLetter.Text = word + " (" + dict[word].translation + ") [" + dict[word].transcription + "]";
+                }
+                else
+                {
+                    currentLetter.Text = "---";
+                }
+            }
         }
 
     }
