@@ -21,7 +21,7 @@ namespace Arabic_Keyboard_Tutor
         
         public ArabicKeyboardLayoutTrainer()
         {
-            showLetterCode("ˁ");
+//            showLetterCode("ˁ");
             InitializeComponent();
             initializeDictionaries();
         }
