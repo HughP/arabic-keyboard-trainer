@@ -15,7 +15,8 @@ Quant à vous, vous pouvez profiter de ce logiciel en apprenant l'alphabet arabe
 D'abord, mettez à jour votre .Net Framework: 
 [http://www.microsoft.com/downloads/details.aspx?FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7&DisplayLang=fr Microsoft .Net Framework]
 
-Puis, Téléchargez la dernière version du logiciel.
+== Entraîneur ==
+Puis, Téléchargez la [http://code.google.com/p/arabic-keyboard-trainer/downloads/list dernière version] du logiciel.
 
 Juissez! :)
 
@@ -24,7 +25,7 @@ Juissez! :)
 == Des Leçons ==
 La structure des leçons est très simple: d'abord, on s'entraine par les deux nouvelles lettres, qui sont mélangés entre eux. C'est la première partie. La deuxième partie, c'est la mélange avec les lettres de leçons précédents. La troisième partie, c'est l'exercice avec des mots composés des lettres étudiées.
 
-*Attention! Il ne faut pas confondre les doigts! Le nombre d'un doigt est écrit dans la boite "Finger:".*
+*Attention! Il ne faut pas confondre les doigts! Le numéro d'un doigt est écrit dans la boite "Finger:".*
 
 = Links =
 [http://www.languageguide.org/im/alpha/ar/ www.languageguide.org] La meilleure ressource d'apprendre les choses initiales.
