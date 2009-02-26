@@ -23,7 +23,7 @@ Juissez! :)
 = Details =
 
 == Des Leçons ==
-La structure des leçons est très simple: d'abord, on s'entraine par les deux nouvelles lettres, qui sont mélangés entre eux. C'est la première partie. La deuxième partie, c'est la mélange avec les lettres de leçons précédents. La troisième partie, c'est l'exercice avec des mots composés des lettres étudiées.
+La structure des leçons est très simple: d'abord, on s'entraine par les deux nouvelles lettres, qui sont mélangés entre eux. C'est la première partie. La deuxième partie, c'est le mélange avec les lettres de leçons précédents. La troisième partie, c'est l'exercice avec des mots composés des lettres étudiées.
 
 *Attention! Il ne faut pas confondre les doigts! Le numéro d'un doigt est écrit dans la boite "Finger:".*
 
