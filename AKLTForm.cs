@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Arabic_Keyboard_Tutor.Data;
+using Arabic_Keyboard_Tutor.Components;
 
 namespace Arabic_Keyboard_Tutor
 {
@@ -16,7 +17,7 @@ namespace Arabic_Keyboard_Tutor
         private Dictionary<string, Letter> lettersMap = new Dictionary<string, Letter>();
         private Dictionary<int, Letter> keysMap = new Dictionary<int, Letter>();
         private List<Word> words = new List<Word>();
-        private const int LETTERS_COUNT = 155;
+        private const int RANDOM_COUNT = 8;
         private int errorsCount = 0;
         
         public ArabicKeyboardLayoutTrainer()
@@ -24,6 +25,22 @@ namespace Arabic_Keyboard_Tutor
 //            showLetterCode("ˁ");
             InitializeComponent();
             initializeDictionaries();
+            initializeImages();
+        }
+        private Image[] images;
+        private void initializeImages()
+        {
+            images = new Image[5];
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            for (int i = 0; i < images.Length; i++)
+            {
+                string suffix = i == 0 ? "" : "_" + i;
+                System.IO.Stream stream = assembly.GetManifestResourceStream("Arabic_Keyboard_Tutor.Resources.two_hands" + suffix + ".jpg");
+                if (stream != null)
+                {
+                    images[i] = Image.FromStream(stream);
+                }
+            }
         }
         private void showLetterCode(string letter)
         {
@@ -35,45 +52,43 @@ namespace Arabic_Keyboard_Tutor
             }
             MessageBox.Show(result);
         }
-        private int[] fingers;
-        private enum Stage : int {Letters, Reiteration, Words };
-        private Stage currentStage = Stage.Letters;
-        private Dictionary<string, Word> dict = new Dictionary<string, Word>();
+        private Settings.Stage currentStage = Settings.Stage.Letters;
+        private Dictionary<string, ITranslatable> dict = new Dictionary<string, ITranslatable>();
         private void initializeDictionaries()
         {
-            letters.Add(new Letter("ب", 70, 4));
-            letters.Add(new Letter("ت", 74, 4));
-            letters.Add(new Letter("ي", 68, 3));
-            letters.Add(new Letter("ن", 75, 3));
-            letters.Add(new Letter("س", 83, 2));
-            letters.Add(new Letter("م", 76, 2));
-            letters.Add(new Letter("ش", 65, 1));
-            letters.Add(new Letter("ك", 186, 1));
-            letters.Add(new Letter("ل", 71, 4));
-            letters.Add(new Letter("ا", 72, 4));
-            letters.Add(new Letter("ق", 82, 4));
-            letters.Add(new Letter("ع", 85, 4));
-            letters.Add(new Letter("ث", 69, 3));
-            letters.Add(new Letter("ه", 73, 3));
-            letters.Add(new Letter("ص", 87, 2));
-            letters.Add(new Letter("خ", 79, 2));
-            letters.Add(new Letter("ض", 81, 1));
-            letters.Add(new Letter("ح", 80, 1));
-            letters.Add(new Letter("ف", 84, 4));
-            letters.Add(new Letter("غ", 89, 4));
-            letters.Add(new Letter("ر", 86, 4));
-            letters.Add(new Letter("ة", 77, 4));
-            letters.Add(new Letter("ؤ", 67, 3));
-            letters.Add(new Letter("و", 188, 3));
-            letters.Add(new Letter("ء", 88, 2));
-            letters.Add(new Letter("ز", 190, 2));
-            letters.Add(new Letter("ئ", 90, 1));
-            letters.Add(new Letter("ظ", 191, 1));
-            letters.Add(new Letter("ى", 78, 4));
-            letters.Add(new Letter("ط", 222, 4));
-            letters.Add(new Letter("ج", 219, 1));
-            letters.Add(new Letter("د", 221, 1));
-            letters.Add(new Letter("ذ", 220, 1));
+            letters.Add(new Letter("ب", 70, 4, "ba", "b"));
+            letters.Add(new Letter("ت", 74, 8, "t\u032Aa", "t\u032A"));
+            letters.Add(new Letter("ي", 68, 3, "ja", "i"));
+            letters.Add(new Letter("ن", 75, 7, "nun", "n"));
+            letters.Add(new Letter("س", 83, 2, "", ""));
+            letters.Add(new Letter("م", 76, 6, "", ""));
+            letters.Add(new Letter("ش", 65, 1, "", ""));
+            letters.Add(new Letter("ك", 186, 5, "", ""));
+            letters.Add(new Letter("ل", 71, 4, "", ""));
+            letters.Add(new Letter("ا", 72, 8, "", ""));
+            letters.Add(new Letter("ق", 82, 4, "", ""));
+            letters.Add(new Letter("ع", 85, 8, "", ""));
+            letters.Add(new Letter("ث", 69, 3, "", ""));
+            letters.Add(new Letter("ه", 73, 7, "", ""));
+            letters.Add(new Letter("ص", 87, 2, "", ""));
+            letters.Add(new Letter("خ", 79, 6, "", ""));
+            letters.Add(new Letter("ض", 81, 1, "", ""));
+            letters.Add(new Letter("ح", 80, 5, "", ""));
+            letters.Add(new Letter("ف", 84, 4, "", ""));
+            letters.Add(new Letter("غ", 89, 8, "", ""));
+            letters.Add(new Letter("ر", 86, 4, "", ""));
+            letters.Add(new Letter("ة", 77, 8, "", ""));
+            letters.Add(new Letter("ؤ", 67, 3, "", ""));
+            letters.Add(new Letter("و", 188, 7, "", ""));
+            letters.Add(new Letter("ء", 88, 2, "", ""));
+            letters.Add(new Letter("ز", 190, 6, "", ""));
+            letters.Add(new Letter("ئ", 90, 1, "", ""));
+            letters.Add(new Letter("ظ", 191, 5, "", ""));
+            letters.Add(new Letter("ى", 78, 4, "", ""));
+            letters.Add(new Letter("ط", 222, 8, "", ""));
+            letters.Add(new Letter("ج", 219, 5, "", ""));
+            letters.Add(new Letter("د", 221, 5, "", ""));
+            letters.Add(new Letter("ذ", 220, 5, "", ""));
 
             foreach (Letter letter in letters)
             {
@@ -89,22 +104,41 @@ namespace Arabic_Keyboard_Tutor
             words.Add(new Word("غابة", "un forêt", "\u0236a:ba"));
             words.Add(new Word("بحر", "une mer", "ba\u0127r"));
             words.Add(new Word("صحراء", "un désert", "s\u02c1a\u0127ra:\u0294"));
+            words.Add(new Word("مدينة", "une ville", ""));
+            words.Add(new Word("طريق", "un chemin", ""));
+            words.Add(new Word("شارع", "une rue", ""));
+            words.Add(new Word("مصرف", "une banque", ""));
+            words.Add(new Word("مقحى", "un café", ""));
+            words.Add(new Word("سيارة", "une voiture", ""));
+            words.Add(new Word("مترو", "un métro", ""));
+            words.Add(new Word("فندق", "un hotel", ""));
+            words.Add(new Word("شاطئ", "une plage", ""));
+            words.Add(new Word("جريدة", "un journal", ""));
+            words.Add(new Word("كتاب", "un livre", ""));
+            words.Add(new Word("قلم", "un stylo", ""));
+            words.Add(new Word("بيت", "une maison", ""));
+            words.Add(new Word("غرفة", "une chambre", ""));
+            words.Add(new Word("يافذة", "une fenêtre", ""));
+            words.Add(new Word("طاولة", "une table", ""));
+            words.Add(new Word("كرسي", "une chaise", ""));
+            words.Add(new Word("ساعة", "une montre", ""));
             /*
+            words.Add(new Word("", "", ""));
+            words.Add(new Word("", "", ""));
             words.Add(new Word("", "", ""));
             words.Add(new Word("", "", ""));
             words.Add(new Word("", "", ""));
             */
 
-            foreach (Word word in words)
+            foreach (ITranslatable word in words)
+            {
+                dict.Add(word.word, word);
+            }
+            foreach (ITranslatable word in letters)
             {
                 dict.Add(word.word, word);
             }
             
-            /*
-            chunkList[] = new string[] { "", "" };
-            */
-
-            fingers = new int[] { 4, 3, 2, 1, 4, 4, 3, 2, 1, 4, 4, 3, 2, 1, 4, 4, 3, 2, 1, 4 };
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -123,7 +157,7 @@ namespace Arabic_Keyboard_Tutor
 
         private void lessonsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            currentStage = Stage.Letters;
+            currentStage = Settings.Stage.Letters;
             generateLesson();
         }
         private void generateLesson()
@@ -134,7 +168,7 @@ namespace Arabic_Keyboard_Tutor
             {
                 nextLesson();
             }
-            fingerNumberLabel.Text = "Finger: " + fingerNumber(fromTextBox.Text);
+            setFingerNumber(fromTextBox.Text);
             enableDisableNextButton();
             setFirstLetterColor();
         }
@@ -152,7 +186,7 @@ namespace Arabic_Keyboard_Tutor
                 lettersCount++;
             }
 
-            if (currentStage == Stage.Letters)
+            if (currentStage == Settings.Stage.Letters)
             {
                 for (int i = letterPos; i < lettersCount; i++)
                 {
@@ -165,7 +199,7 @@ namespace Arabic_Keyboard_Tutor
                 {
                     chunksList.Add(letters[i].letter);
                 }
-                 if (currentStage == Stage.Words)
+                if (currentStage == Settings.Stage.Words)
                  {
                      List<string> wordsList = new List<string>();
                      for (int i = 0; i < words.Count; i++)
@@ -190,13 +224,14 @@ namespace Arabic_Keyboard_Tutor
             }
             if (chunksList.Count > 1)
             {
-                for (int i = 0; result.Length < LETTERS_COUNT; i++)
+                int random_count = chunksList.Count > RANDOM_COUNT ? RANDOM_COUNT : chunksList.Count;
+                for (int i = 0; result.Length < settings.getLettersPerStage(currentStage); i++)
                 {
                     string next = null;
                     //We don't want more than three consecutive letters/words
                     do
                     {
-                        next = chunksList[r.Next(chunksList.Count)];
+                        next = chunksList[chunksList.Count - r.Next(random_count) - 1];
                         if (next == lastChar)
                         {
                             lastCount++;
@@ -249,7 +284,7 @@ namespace Arabic_Keyboard_Tutor
                     {
                         nextLesson();
                     }
-                    fingerNumberLabel.Text = "Finger: " + fingerNumber(fromTextBox.Text);
+                    setFingerNumber(fromTextBox.Text);
                     setFirstLetterColor();
                     return;
                 }
@@ -276,16 +311,22 @@ namespace Arabic_Keyboard_Tutor
             fromTextBox.Select(0, 1);
             fromTextBox.SelectionColor = Color.Blue;
         }
-        private int fingerNumber(string result)
+        private void setFingerNumber(string result)
         {
             char[] arr = result.ToCharArray();
             string letter = arr[0].ToString();
+            int fingerNumber = -1;
             if (arr.Length > 0 && lettersMap.Keys.Contains(letter))
             {
-                return lettersMap[letter].finger;
+                fingerNumber = lettersMap[letter].finger;
             }
-            return -1;
+            fingerNumberLabel.Text = "Finger: " + fingerNumber;
+            fingerNumber--;
+            fingerPictureBox.Image = (Image)images[fingerNumber % 4 + 1].Clone();
+            if (fingerNumber/4 > 0)
+                fingerPictureBox.Image.RotateFlip(RotateFlipType.RotateNoneFlipX);
         }
+
         private void onTimer(object source, EventArgs e)
         {
             ((Timer)source).Stop();
@@ -298,7 +339,7 @@ namespace Arabic_Keyboard_Tutor
         }
         private void nextLesson()
         {
-            if (currentStage < Stage.Words)
+            if (currentStage < Settings.Stage.Words)
             {
                 currentStage++;
                 if (lessonsComboBox.SelectedIndex == 0) currentStage++;
@@ -315,7 +356,7 @@ namespace Arabic_Keyboard_Tutor
         }
         private void enableDisableNextButton()
         {
-            if (lessonsComboBox.SelectedIndex + 1 == ((string[])lessonsComboBox.DataSource).Length && currentStage == Stage.Words)
+            if (lessonsComboBox.SelectedIndex + 1 == ((string[])lessonsComboBox.DataSource).Length && currentStage == Settings.Stage.Words)
             {
                 nextButton.Enabled = false;
             }
@@ -354,5 +395,25 @@ namespace Arabic_Keyboard_Tutor
             }
         }
 
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AboutBox box = new AboutBox();
+            box.Show(this);
+        }
+        private Settings settings = new Settings();
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OptionsForm of = new OptionsForm(settings);
+            of.Show(this);
+            of.FormClosed += new FormClosedEventHandler(onOptionsClose);
+        }
+
+        public void onOptionsClose(object target, FormClosedEventArgs args)
+        {
+            if (((OptionsForm)target).settings != null)
+            {
+                this.settings = ((OptionsForm)target).settings;
+            }
+        }
     }
 }
