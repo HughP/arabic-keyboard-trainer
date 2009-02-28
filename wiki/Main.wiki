@@ -1,5 +1,7 @@
 #summary main project page for "arabic-keyboard-trainer"
 
+[http://arabic-keyboard-trainer.googlecode.com/files/arabic_keyboard_tutor_image.jpg]
+
 = Introduction =
 
 C'est un logiciel qui va m'aider à apprendre plusieurs choses:
