@@ -85,6 +85,7 @@
     <Compile Include="Data\Letter.cs" />
     <Compile Include="Data\Settings.cs" />
     <Compile Include="Data\Word.cs" />
+    <Compile Include="DAO\SettingsDAO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AKLTForm.resx">

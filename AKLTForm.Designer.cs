@@ -35,13 +35,15 @@
             this.nextButton = new System.Windows.Forms.Button();
             this.fingerNumberLabel = new System.Windows.Forms.Label();
             this.fromTextBox = new System.Windows.Forms.RichTextBox();
-            this.currentLetter = new System.Windows.Forms.Label();
+            this.wordUnderMouse = new System.Windows.Forms.Label();
             this.fingerPictureBox = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.currentWordTranslation = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fingerPictureBox)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -104,7 +106,7 @@
             // 
             this.fingerNumberLabel.AutoSize = true;
             this.fingerNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.fingerNumberLabel.Location = new System.Drawing.Point(595, 89);
+            this.fingerNumberLabel.Location = new System.Drawing.Point(580, 89);
             this.fingerNumberLabel.Name = "fingerNumberLabel";
             this.fingerNumberLabel.Size = new System.Drawing.Size(75, 24);
             this.fingerNumberLabel.TabIndex = 6;
@@ -123,15 +125,16 @@
             this.fromTextBox.Text = "";
             this.fromTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyEntered);
             this.fromTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.fromTextBox_MouseMove);
+            this.fromTextBox.MouseLeave += new System.EventHandler(this.fromTextBox_MouseLeave);
             // 
-            // currentLetter
+            // wordUnderMouse
             // 
-            this.currentLetter.AutoSize = true;
-            this.currentLetter.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.currentLetter.Location = new System.Drawing.Point(484, 89);
-            this.currentLetter.Name = "currentLetter";
-            this.currentLetter.Size = new System.Drawing.Size(0, 13);
-            this.currentLetter.TabIndex = 8;
+            this.wordUnderMouse.AutoSize = true;
+            this.wordUnderMouse.Font = new System.Drawing.Font("Doulos SIL", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.wordUnderMouse.Location = new System.Drawing.Point(12, 36);
+            this.wordUnderMouse.Name = "wordUnderMouse";
+            this.wordUnderMouse.Size = new System.Drawing.Size(0, 20);
+            this.wordUnderMouse.TabIndex = 8;
             // 
             // fingerPictureBox
             // 
@@ -165,7 +168,7 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -180,9 +183,27 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
             this.toolStripMenuItem1.Text = "About";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // currentWordTranslation
+            // 
+            this.currentWordTranslation.AutoSize = true;
+            this.currentWordTranslation.Font = new System.Drawing.Font("Doulos SIL", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.currentWordTranslation.Location = new System.Drawing.Point(12, 63);
+            this.currentWordTranslation.Name = "currentWordTranslation";
+            this.currentWordTranslation.Size = new System.Drawing.Size(0, 20);
+            this.currentWordTranslation.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Doulos SIL", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(12, 93);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 20);
+            this.label2.TabIndex = 8;
             // 
             // ArabicKeyboardLayoutTrainer
             // 
@@ -190,7 +211,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(682, 341);
             this.Controls.Add(this.fingerPictureBox);
-            this.Controls.Add(this.currentLetter);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.currentWordTranslation);
+            this.Controls.Add(this.wordUnderMouse);
             this.Controls.Add(this.fromTextBox);
             this.Controls.Add(this.fingerNumberLabel);
             this.Controls.Add(this.nextButton);
@@ -204,6 +227,7 @@
             this.Name = "ArabicKeyboardLayoutTrainer";
             this.Text = "Arabic Keyboard Layout Trainer";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ArabicKeyboardLayoutTrainer_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.fingerPictureBox)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -221,13 +245,15 @@
         private System.Windows.Forms.Button nextButton;
         private System.Windows.Forms.Label fingerNumberLabel;
         private System.Windows.Forms.RichTextBox fromTextBox;
-        private System.Windows.Forms.Label currentLetter;
+        private System.Windows.Forms.Label wordUnderMouse;
         private System.Windows.Forms.PictureBox fingerPictureBox;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.Label currentWordTranslation;
+        private System.Windows.Forms.Label label2;
     }
 }
 
