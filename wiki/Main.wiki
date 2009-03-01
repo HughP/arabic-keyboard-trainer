@@ -28,8 +28,11 @@ Juissez! :)
 = La Théorie =
 == Les doigts == 
 Si vous voulez apprendre à taper vite sans regardant sur un clavier, il faut vous habituer à utiliser propre doigt pour chaque touche. Voilà les nombres des doigts:
+
 [http://arabic-keyboard-trainer.googlecode.com/files/two_hands_numbered.jpg]
+
 Et les touches avec le numérotage des doigts:
+
 [http://arabic-keyboard-trainer.googlecode.com/files/800px-KB_Arabic_colored.jpg]
 
 == Les exercices == 
