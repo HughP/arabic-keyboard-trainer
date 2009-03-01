@@ -37,9 +37,9 @@ Et les touches avec le numérotage des doigts:
 
 == Les exercices == 
 == Une paire des lettres ==
-On commence par deux lettres (par exemple, ب et ت). Il faut se souvenir les positions de ces lettres, donc on a un texte qui se compose de ces lettres en ordre accidentel. Quand cet exercice et faite, on peut ajouter les lettres qui sont déjà étudiées.
+On commence la leçon par deux lettres (par exemple, ب et ت). Il faut se souvenir les positions de ces lettres, donc on a un texte qui se compose de ces lettres en ordre accidentel. Quand cet exercice et faite, on peut ajouter les lettres qui sont déjà étudiées.
 == On ajoute des lettres ==
-Pour se rappeler les lettres précédents, on ajoute les lettres de dix dernières leçons.
+Pour se rappeler les lettres précédents, on ajoute les lettres de huit dernières leçons dans la deuxième partie de la leçon.
 == Les mots ==
 Ça, c'est plus compliqué. Les mots sont composés des lettres déjà étudiés. Mais les lettres sont parfois utilisées en milieu du mot et elles prennent une forme différente (voir les liens sur l'alphabet arabe!).
 Après cette partie, on recommence par une nouvelle paire des lettres. Si vous n'êtes pas content (trop d'erreurs), vous pouvez reprendre la leçon.
