@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Arabic_Keyboard_Tutor.Data;
 using Arabic_Keyboard_Tutor.Components;
+using Arabic_Keyboard_Tutor.DAO;
 
 namespace Arabic_Keyboard_Tutor
 {
@@ -19,10 +20,13 @@ namespace Arabic_Keyboard_Tutor
         private List<Word> words = new List<Word>();
         private const int RANDOM_COUNT = 8;
         private int errorsCount = 0;
-        
+
+        private SettingsDAO settingsDAO = new SettingsDAO();
+
         public ArabicKeyboardLayoutTrainer()
         {
-//            showLetterCode("ˁ");
+//            showLetterCode("ʾ");
+            this.settings = settingsDAO.loadSettings();
             InitializeComponent();
             initializeDictionaries();
             initializeImages();
@@ -56,8 +60,8 @@ namespace Arabic_Keyboard_Tutor
         private Dictionary<string, ITranslatable> dict = new Dictionary<string, ITranslatable>();
         private void initializeDictionaries()
         {
-            letters.Add(new Letter("ب", 70, 4, "ba", "b"));
-            letters.Add(new Letter("ت", 74, 8, "t\u032Aa", "t\u032A"));
+            letters.Add(new Letter("ب", 70, 4, "باء", "ba:\u02BE"));
+            letters.Add(new Letter("ت", 74, 8, "تاء", "t\u032Aa:\u02BE"));
             letters.Add(new Letter("ي", 68, 3, "ja", "i"));
             letters.Add(new Letter("ن", 75, 7, "nun", "n"));
             letters.Add(new Letter("س", 83, 2, "", ""));
@@ -65,7 +69,7 @@ namespace Arabic_Keyboard_Tutor
             letters.Add(new Letter("ش", 65, 1, "", ""));
             letters.Add(new Letter("ك", 186, 5, "", ""));
             letters.Add(new Letter("ل", 71, 4, "", ""));
-            letters.Add(new Letter("ا", 72, 8, "", ""));
+            letters.Add(new Letter("ا", 72, 8, "ألف", "\u02BEalif"));
             letters.Add(new Letter("ق", 82, 4, "", ""));
             letters.Add(new Letter("ع", 85, 8, "", ""));
             letters.Add(new Letter("ث", 69, 3, "", ""));
@@ -85,7 +89,7 @@ namespace Arabic_Keyboard_Tutor
             letters.Add(new Letter("ئ", 90, 1, "", ""));
             letters.Add(new Letter("ظ", 191, 5, "", ""));
             letters.Add(new Letter("ى", 78, 4, "", ""));
-            letters.Add(new Letter("ط", 222, 8, "", ""));
+            letters.Add(new Letter("ط", 222, 8, "", "t\u02E4a:"));
             letters.Add(new Letter("ج", 219, 5, "", ""));
             letters.Add(new Letter("د", 221, 5, "", ""));
             letters.Add(new Letter("ذ", 220, 5, "", ""));
@@ -143,6 +147,11 @@ namespace Arabic_Keyboard_Tutor
         private void MainForm_Load(object sender, EventArgs e)
         {
             initLessonsComboBox();
+            initializeCurrentLesson();
+        }
+        private void initializeCurrentLesson()
+        {
+            lessonsComboBox.SelectedIndex = settings.currentLessonNumber;
         }
         private void initLessonsComboBox()
         {
@@ -168,6 +177,7 @@ namespace Arabic_Keyboard_Tutor
             {
                 nextLesson();
             }
+            currentWordTranslation.Text = CURRENT_WORD + getTranslation(fromTextBox.Text.Split(' ')[0]);
             setFingerNumber(fromTextBox.Text);
             enableDisableNextButton();
             setFirstLetterColor();
@@ -248,6 +258,8 @@ namespace Arabic_Keyboard_Tutor
             }
             return result;
         }
+        private bool newWord = true;
+        private const string CURRENT_WORD = "Current Word: ";
         private void keyEntered(object sender, KeyEventArgs e)
         {
             if (e.Alt || e.Shift || e.Control)
@@ -266,6 +278,18 @@ namespace Arabic_Keyboard_Tutor
                 char[] letters = txt[0].ToCharArray();
                 if (letter == letters[0].ToString())
                 {
+                    //If it's the last letter of the previous word, create a new translation:
+                    if (txt[0].Length == 1)
+                    {
+                        if (txt.Length > 1)
+                        {
+                            currentWordTranslation.Text = CURRENT_WORD + getTranslation(txt[1]);
+                        }
+                        else //End of the lesson's part:
+                        {
+                            currentWordTranslation.Text = CURRENT_WORD + "---";
+                        }
+                    }
                     string result = "";
                     if (letters.Length > 1)
                     {
@@ -371,6 +395,41 @@ namespace Arabic_Keyboard_Tutor
             e.Handled = true;
         }
 
+        private const string UNDER_MOUSE = "Under Mouse: ";
+        private string getTranslation(string word)
+        {
+            string result = "---";
+            word = word.Trim();
+            if (word != "")
+            {
+                result = word;
+                if (dict.Keys.Contains(word))
+                {
+                    string translation = dict[word].translation;
+                    if (translation.Length > 0)
+                    {
+                        if (translation[0] < 200)
+                        {
+                            result += " (" + translation + ")";
+                        }
+                        else
+                        {
+                            result += " for " + translation;
+                        }
+                    }
+                    else
+                    {
+                        result = word;
+                    }
+                    string transcription = dict[word].transcription;
+                    if (transcription.Length > 0)
+                    {
+                        result += " [" + transcription + "]";
+                    }
+                }
+            }
+            return result;
+        }
         private void fromTextBox_MouseMove(object sender, MouseEventArgs e)
         {
             Point pt = new Point(e.X, e.Y);
@@ -381,18 +440,7 @@ namespace Arabic_Keyboard_Tutor
             int end = fromTextBox.Text.IndexOf(" ", pos);
             if (end < 0) end = fromTextBox.Text.Length;
             string word = fromTextBox.Text.Substring(start, end - start);
-            word = word.Trim();
-            if (word != "")
-            {
-                if (dict.Keys.Contains(word))
-                {
-                    currentLetter.Text = word + " (" + dict[word].translation + ") [" + dict[word].transcription + "]";
-                }
-                else
-                {
-                    currentLetter.Text = "---";
-                }
-            }
+            wordUnderMouse.Text = UNDER_MOUSE + getTranslation(word);
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
@@ -407,13 +455,24 @@ namespace Arabic_Keyboard_Tutor
             of.Show(this);
             of.FormClosed += new FormClosedEventHandler(onOptionsClose);
         }
-
         public void onOptionsClose(object target, FormClosedEventArgs args)
         {
             if (((OptionsForm)target).settings != null)
             {
                 this.settings = ((OptionsForm)target).settings;
+                settingsDAO.saveSettings(this.settings);
             }
+        }
+
+        private void ArabicKeyboardLayoutTrainer_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            settings.currentLessonNumber = lessonsComboBox.SelectedIndex;
+            settingsDAO.saveSettings(settings);
+        }
+
+        private void fromTextBox_MouseLeave(object sender, EventArgs e)
+        {
+            wordUnderMouse.Text = UNDER_MOUSE + "---";
         }
     }
 }

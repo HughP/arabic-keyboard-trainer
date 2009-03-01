@@ -10,6 +10,8 @@ namespace Arabic_Keyboard_Tutor.Data
         private int _lettersCountPartOne = 70;
         private int _lettersCountPartTwo = 150;
         private int _lettersCountPartThree = 200;
+
+        private int _currentLessonNumber = 0;
         
         public enum Stage : int {Letters, Reiteration, Words };
 
@@ -41,6 +43,11 @@ namespace Arabic_Keyboard_Tutor.Data
         {
             get { return _lettersCountPartThree; }
             set { _lettersCountPartThree = value; }
+        }
+        public int currentLessonNumber
+        {
+            get { return _currentLessonNumber; }
+            set { _currentLessonNumber = value; }
         }
     }
 }
