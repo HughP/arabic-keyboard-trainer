@@ -17,6 +17,9 @@ Quant à vous, vous pouvez profiter de ce logiciel en apprenant l'alphabet arabe
 D'abord, mettez à jour votre .Net Framework: 
 [http://www.microsoft.com/downloads/details.aspx?FamilyID=ab99342f-5d1a-413d-8319-81da479ab0d7&DisplayLang=fr Microsoft .Net Framework]
 
+== Fonts ==
+Téléchargez aussi un IPA font [http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&item_id=CharisSIL_download#1fd0063a IPA Font]
+Ça vous aidera à lire la prononciation en IPA symboles.
 == Entraîneur ==
 Puis, Téléchargez la [http://code.google.com/p/arabic-keyboard-trainer/downloads/list dernière version] du logiciel.
 
