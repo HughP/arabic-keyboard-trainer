@@ -25,12 +25,24 @@ Puis, Téléchargez la [http://code.google.com/p/arabic-keyboard-trainer/downloa
 
 Juissez! :)
 
-= Details =
+= La Théorie =
+== Les doigts == 
+Si vous voulez apprendre à taper vite sans regardant sur un clavier, il faut vous habituer à utiliser propre doigt pour chaque touche. Voilà les nombres des doigts:
+[http://arabic-keyboard-trainer.googlecode.com/files/two_hands_numbered.jpg]
+Et les touches avec le numérotage des doigts:
+[http://arabic-keyboard-trainer.googlecode.com/files/800px-KB_Arabic_colored.jpg]
 
-== Des Leçons ==
-La structure des leçons est très simple: d'abord, on s'entraine par les deux nouvelles lettres, qui sont mélangés entre eux. C'est la première partie. La deuxième partie, c'est le mélange avec les lettres de leçons précédents. La troisième partie, c'est l'exercice avec des mots composés des lettres étudiées.
+== Les exercices == 
+== Une paire des lettres ==
+On commence par deux lettres (par exemple, ب et ت). Il faut se souvenir les positions de ces lettres, donc on a un texte qui se compose de ces lettres en ordre accidentel. Quand cet exercice et faite, on peut ajouter les lettres qui sont déjà étudiées.
+== On ajoute des lettres ==
+Pour se rappeler les lettres précédents, on ajoute les lettres de dix dernières leçons.
+== Les mots ==
+Ça, c'est plus compliqué. Les mots sont composés des lettres déjà étudiés. Mais les lettres sont parfois utilisées en milieu du mot et elles prennent une forme différente (voir les liens sur l'alphabet arabe!).
+Après cette partie, on recommence par une nouvelle paire des lettres. Si vous n'êtes pas content (trop d'erreurs), vous pouvez reprendre la leçon.
 
-*Attention! Il ne faut pas confondre les doigts! Le numéro d'un doigt est écrit dans la boite "Finger:".*
+
+*Attention! Il ne faut pas confondre les doigts! Le numéro d'un doigt est écrit dans la boite "Finger:" et démontré sur l'image des doigts.*
 
 = Links =
 [http://www.languageguide.org/im/alpha/ar/ www.languageguide.org] La meilleure ressource d'apprendre les choses initiales.
