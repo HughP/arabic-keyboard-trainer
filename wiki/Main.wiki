@@ -49,3 +49,4 @@ Après cette partie, on recommence par une nouvelle paire des lettres. Si vous n
 
 = Links =
 [http://www.languageguide.org/im/alpha/ar/ www.languageguide.org] La meilleure ressource d'apprendre les choses initiales.
+[http://en.wikipedia.org/wiki/Arabic_language#Sounds IPA signes pour les lettres arabes]
