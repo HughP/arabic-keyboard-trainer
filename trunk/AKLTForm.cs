@@ -25,7 +25,7 @@ namespace Arabic_Keyboard_Tutor
 
         public ArabicKeyboardLayoutTrainer()
         {
-//            showLetterCode("ʾ");
+//            showLetterCode("t"); //3 2A 0 74
             this.settings = settingsDAO.loadSettings();
             InitializeComponent();
             initializeDictionaries();
@@ -61,38 +61,38 @@ namespace Arabic_Keyboard_Tutor
         private void initializeDictionaries()
         {
             letters.Add(new Letter("ب", 70, 4, "باء", "ba:\u02BE"));
-            letters.Add(new Letter("ت", 74, 8, "تاء", "t\u032Aa:\u02BE"));
-            letters.Add(new Letter("ي", 68, 3, "ja", "i"));
-            letters.Add(new Letter("ن", 75, 7, "nun", "n"));
-            letters.Add(new Letter("س", 83, 2, "", ""));
-            letters.Add(new Letter("م", 76, 6, "", ""));
-            letters.Add(new Letter("ش", 65, 1, "", ""));
-            letters.Add(new Letter("ك", 186, 5, "", ""));
-            letters.Add(new Letter("ل", 71, 4, "", ""));
+            letters.Add(new Letter("ت", 74, 8, "تاء", "\u032Ata:\u02BE"));
+            letters.Add(new Letter("ي", 68, 3, "ياء", "ia:\u02BE"));
+            letters.Add(new Letter("ن", 75, 7, "نون", "n"));
+            letters.Add(new Letter("س", 83, 2, "سين", ""));
+            letters.Add(new Letter("م", 76, 6, "ميم", ""));
+            letters.Add(new Letter("ش", 65, 1, "شين", ""));
+            letters.Add(new Letter("ك", 186, 5, "كاف", ""));
+            letters.Add(new Letter("ل", 71, 4, "لام", ""));
             letters.Add(new Letter("ا", 72, 8, "ألف", "\u02BEalif"));
-            letters.Add(new Letter("ق", 82, 4, "", ""));
-            letters.Add(new Letter("ع", 85, 8, "", ""));
-            letters.Add(new Letter("ث", 69, 3, "", ""));
-            letters.Add(new Letter("ه", 73, 7, "", ""));
-            letters.Add(new Letter("ص", 87, 2, "", ""));
-            letters.Add(new Letter("خ", 79, 6, "", ""));
-            letters.Add(new Letter("ض", 81, 1, "", ""));
-            letters.Add(new Letter("ح", 80, 5, "", ""));
-            letters.Add(new Letter("ف", 84, 4, "", ""));
-            letters.Add(new Letter("غ", 89, 8, "", ""));
-            letters.Add(new Letter("ر", 86, 4, "", ""));
+            letters.Add(new Letter("ق", 82, 4, "قاف", ""));
+            letters.Add(new Letter("ع", 85, 8, "عين", ""));
+            letters.Add(new Letter("ث", 69, 3, "ثاء", ""));
+            letters.Add(new Letter("ه", 73, 7, "هاء", ""));
+            letters.Add(new Letter("ص", 87, 2, "صاد", ""));
+            letters.Add(new Letter("خ", 79, 6, "خاء", ""));
+            letters.Add(new Letter("ض", 81, 1, "ضاد", ""));
+            letters.Add(new Letter("ح", 80, 5, "حاء", ""));
+            letters.Add(new Letter("ف", 84, 4, "فاء", ""));
+            letters.Add(new Letter("غ", 89, 8, "غين", ""));
+            letters.Add(new Letter("ر", 86, 4, "راء", ""));
             letters.Add(new Letter("ة", 77, 8, "", ""));
             letters.Add(new Letter("ؤ", 67, 3, "", ""));
-            letters.Add(new Letter("و", 188, 7, "", ""));
+            letters.Add(new Letter("و", 188, 7, "واو", ""));
             letters.Add(new Letter("ء", 88, 2, "", ""));
-            letters.Add(new Letter("ز", 190, 6, "", ""));
+            letters.Add(new Letter("ز", 190, 6, "زاي", ""));
             letters.Add(new Letter("ئ", 90, 1, "", ""));
-            letters.Add(new Letter("ظ", 191, 5, "", ""));
-            letters.Add(new Letter("ى", 78, 4, "", ""));
-            letters.Add(new Letter("ط", 222, 8, "", "t\u02E4a:"));
-            letters.Add(new Letter("ج", 219, 5, "", ""));
-            letters.Add(new Letter("د", 221, 5, "", ""));
-            letters.Add(new Letter("ذ", 220, 5, "", ""));
+            letters.Add(new Letter("ظ", 191, 5, "ظاء", ""));
+            letters.Add(new Letter("ى", 78, 8, "", ""));
+            letters.Add(new Letter("ط", 222, 5, "طاء", "t\u02E4a:"));
+            letters.Add(new Letter("ج", 219, 5, "جيم", ""));
+            letters.Add(new Letter("د", 221, 5, "دال", ""));
+            letters.Add(new Letter("ذ", 220, 5, "ذال", ""));
 
             foreach (Letter letter in letters)
             {
