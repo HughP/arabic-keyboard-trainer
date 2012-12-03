@@ -1,4 +1,4 @@
-#summary main project page for "arabic-keyboard-trainer"
+#summary La page principale pour "arabic-keyboard-trainer" (français)
 
 [http://arabic-keyboard-trainer.googlecode.com/files/arabic_keyboard_tutor_image.jpg]
 
