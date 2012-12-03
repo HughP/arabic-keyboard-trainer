@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -126,6 +126,14 @@ namespace Arabic_Keyboard_Tutor
             words.Add(new Word("طاولة", "une table", ""));
             words.Add(new Word("كرسي", "une chaise", ""));
             words.Add(new Word("ساعة", "une montre", ""));
+            words.Add(new Word("كيف حالك؟", "comment allez-vous?", ""));
+            words.Add(new Word("أنا بخير", "je vais bien", ""));
+            words.Add(new Word("و أنت؟", "et vous?", ""));
+            words.Add(new Word("جيد", "bien", ""));
+            words.Add(new Word("شكرا", "merci", ""));
+            words.Add(new Word("مالجديد؟", "quoi de neuf?", ""));
+            words.Add(new Word("قليلا", "pas grande chose", ""));
+            words.Add(new Word("من أين أنت؟", "d'où venez-vous?", ""));
             /*
             words.Add(new Word("", "", ""));
             words.Add(new Word("", "", ""));
