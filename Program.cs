@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 
 namespace Arabic_Keyboard_Tutor
-{
+{ 
     static class Program
     {
         /// <summary>
