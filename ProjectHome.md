@@ -1,0 +1,3 @@
+Ce programme aide à maitriser la disposition arabe du clavier. Il y a une leçon par chaque paire des lettres arabes. Chaque lettre est pressé par son propre doigt (il est montré par le programme aussi): petit doigt est le premier, index est le quatrième.
+
+This program helps to master the arabic keyboard layout. Each lesson corresponds to a pair of arabic letters. Every letter has a corresponding finger which is shown by the program (little finger is the first, index finger is the fourth).
